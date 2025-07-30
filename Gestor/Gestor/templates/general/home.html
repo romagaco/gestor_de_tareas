@@ -1,23 +1,13 @@
 {% extends "general/layout.html" %}
 
-{% block head_title %}Bienvenido a instagrans2 {% endblock %}
+{% block head_title %}Bienvenido a Task-Forge{% endblock %}
 
 {% block page_content %}
-<div class="container">
+<div class="home_container">
   {% include '_includes/_messages.html' %}
 
-  <h1>Homepage</h1>
-  <p>¡Bienvenido a Instagrans2!</p>
-  <section>
-    <h2>Últimas publicaciones</h2>
-
-    <div class="row">
-      {% for post in last_posts %}
-        <div class="col-12 col-sm-6 col-md-4">
-          {% include '_includes/posts/_post.html' %}
-        </div>
-      {% endfor %}
-    </div>
-  </section>
+  <h1>Task-Forge Homepage</h1>
+  <p>¡Bienvenido a Task-Forge!</p>
+  
 </div>
 {% endblock %}

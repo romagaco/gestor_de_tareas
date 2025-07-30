@@ -1,6 +1,49 @@
-<footer>
-    <div class="footer-content">
-        <p>Copyright 2025 ®  2023 Instagram Clone. All rights reserved. <a href="{% url "legal" %}">aviso legal</a> </p>
-        <p>Follow us on social media!</p>
-    </div>
-</footer>
+<header>
+  <div class="container">
+    <h1>Task-Forge</h1>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="{% url 'home' %}">Inicio</a></li>
+        {% if not request.user.is_authenticated %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'register' %}">Registro</a></li>
+        {% endif %}
+        <li><a href="{% url 'contact' %}">Contacto</a></li>
+        {% if request.user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</header>
+    <style>
+      .container { 
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+        width: 100%; 
+        background-color: #2dcc27ff;
+        
+      }
+
+        .main-nav ul {
+            list-style: none;
+            padding: 10;
+            margin: 0;
+            display: flex;
+        }
+        .main-nav li {
+            margin-right: 20px;
+            background-color: #d43c3cff;
+            padding: 10;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .main-nav a {
+            padding: 5px;
+            text-decoration: none;
+            color: #000000ff;
+        }
+    </style>
+</header>
