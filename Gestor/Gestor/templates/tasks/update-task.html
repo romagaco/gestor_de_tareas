@@ -1,0 +1,18 @@
+{% extends "general/layout.html" %}
+
+{% block head_title %}Bienvenido a Task-Forge{% endblock %}
+
+{% block page_content %}
+
+    <h1> Update Task </h1>
+
+    <form method="POST" action="{% url 'update-task' task.id %}">
+
+        {% csrf_token %}
+
+        {{TaskForm}}
+
+        <input class="btn" type="submit" value="Update Task">
+
+    </form>
+{% endblock %}

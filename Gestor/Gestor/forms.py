@@ -8,26 +8,25 @@ class RegistrationForm(forms.ModelForm):
         model = User
         fields = [
             "first_name",
-            "last_name",
             "username",
             "email",
-            "password",
-            "is_staff",
-            "is_active", 
+            "password"
         ]
 
-    # def save(self):
-      #  user = super().save(commit=True)
-      #  user.set_password(self.cleaned_data["password"])
-      #  user.save()
+    def save(self):
+        user = super().save(commit=True)
+        user.set_password(self.cleaned_data["password"])
+        user.save()
 
-      #  from profiles.models import UserProfile
-       # UserProfile.objects.create(user=user)
+        from User.models import Profile
+        Profile.objects.create(user=user)
 
-       # return user  */
+        return user
 
 
 
 class LoginForm(forms.Form):
     username = forms.CharField(label="Usuario")
     password = forms.CharField(label="Password", widget=forms.PasswordInput())
+
+

@@ -30,12 +30,12 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'bootstrap5',
+    'User.apps.UserConfig',
+
 
     'Gestor',
     'Task',
-    'TaskList',
-    'User',
-    'Board',
+
 
 ]
 
