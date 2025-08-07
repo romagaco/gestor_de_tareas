@@ -1,0 +1,18 @@
+<header>
+  <div class="header_container">
+    <h1>TareasNaitor5000</h1>
+    <nav class="main-nav">
+        <ul>
+          <li><a href="{% url 'home' %}">Homepage</a></li>
+          {% if not request.user.is_authenticated %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Registro</a></li>
+          {% endif %}
+          {% if request.user.is_authenticated %}
+            <li><a href="{% url 'my_profile' request.user.profile.pk %}">Mi perfil</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+  </div>
+</header>

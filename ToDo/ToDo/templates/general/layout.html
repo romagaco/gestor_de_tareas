@@ -1,0 +1,26 @@
+<doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block head_title%}titulo base {% endblock %} </title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+  <style>
+    .likeButton {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+{% include '_includes/_header.html' %}
+
+    {% block page_content %}
+
+    {% endblock %}
+
+    {% include '_includes/_footer.html' %}

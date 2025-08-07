@@ -1,0 +1,35 @@
+{% extends "general/layout.html" %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}Bienvenido a TareasNaitor5000{% endblock %}
+
+{% block page_content %}
+<div class="profile_container">
+  {% include '_includes/_messages.html' %}
+
+  <h1>Perfil</h1>
+  <p>Nombre: {{ profile.user.first_name }}</p>
+  <p>Biografía: {{ profile.bio | default:"Sin rellenar" }}</p>
+  <p>Fecha de nacimiento: {{ profile.birth_date | default:"Sin rellenar" }}</p>
+  <p>
+    {% if profile.profile_picture %}
+      <img width="100" src="{{ profile.profile_picture.url }}" alt="">
+    {% else %}
+      No dispone de foto de perfil
+    {% endif %}
+  </p>
+  {% if profile == request.user %}
+    <p><a href="{% url 'profile_update' %}">Editar perfil</a></p>
+  {% endif %}
+    <section>
+    <h2>Tareas</h2>
+    <div class="row">
+      {% for task in profile.user.tasks.all %}
+      <div class="col-12 col-sm-4">
+        {% include '_includes/tasks/_task.html' %}
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock %}

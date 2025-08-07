@@ -1,0 +1,30 @@
+{% extends "general/layout.html" %}
+
+{% block head_title %}Bienvenido a TareasNaitor5000 {% endblock %}
+
+{% block page_content %}
+<div class="container">
+  {% include '_includes/_messages.html' %}
+
+  <h1>Homepage TareasNaitor5000 </h1>
+  <p>¡Bienvenido a TareasNaitor5000!</p>
+  <section>
+    <h2>ultimas  Noticias</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Noticia 1</h3>
+        <p>Descripción breve de la noticia 1.</p>
+      </div>
+      <div class="col-md-4">
+        <h3>Noticia 2</h3>
+        <p>Descripción breve de la noticia 2.</p>
+      </div>
+      <div class="col-md-4">
+        <h3>Noticia 3</h3>
+        <p>Descripción breve de la noticia 3.</p>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
