@@ -18,6 +18,7 @@ from django.utils.decorators import method_decorator
 
 from .forms import RegistrationForm
 from profiles.models import UserProfile
+from django.contrib.auth.forms import AuthenticationForm
 
 class HomeView(TemplateView):
     template_name = "general/Homepage.html"
@@ -29,6 +30,8 @@ class CalendarView(TemplateView):
 
 class LoginView(FormView):
     template_name = "general/login.html"
+    form_class = AuthenticationForm  # Add this
+    success_url = '/tasks/'  # Fallback URL if my_profile fails
 
     def form_valid(self, form):
         usuario = form.cleaned_data.get('username')
@@ -39,11 +42,10 @@ class LoginView(FormView):
             login(self.request, user)
             messages.add_message(self.request, messages.SUCCESS, f'Bienvenido de nuevo {user.username}')
             return HttpResponseRedirect(reverse('my_profile'))
-
         else:
             messages.add_message(
                 self.request, messages.ERROR, 'Usuario no válido o contraseña no válida')
-            return super(LoginView, self).form_invalid(form)
+            return super().form_invalid(form)
 
 
 class RegisterView(CreateView):
@@ -70,6 +72,9 @@ class ProfileDetailView(DetailView):
     model = User
     template_name = "profiles/my_profile.html"
     context_object_name = "profile"
+
+    def get_object(self):
+        return self.request.user
 
     def get_initial(self):
         self.initial['profile_pk'] =  self.get_object().pk

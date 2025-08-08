@@ -81,16 +81,16 @@ class TaskUpdateView(CreateView):
         return super(TaskUpdateView, self).form_valid(form)
     
 
-    @method_decorator(login_required, name='dispatch')
-    class TaskListView(CreateView):
-        template_name = "tasks/task_list.html"
-        model = Task
-        context_object_name = 'tasks'
+@method_decorator(login_required, name='dispatch')
+class TaskListView(CreateView):
+    template_name = "tasks/task_list.html"
+    model = Task
+    context_object_name = 'tasks'
 
-        def get_queryset(self):
-            return Task.objects.filter(user=self.request.user).order_by('-created_at')
+    def get_queryset(self):
+        return Task.objects.filter(user=self.request.user).order_by('-created_at')
 
-        def get_context_data(self, **kwargs):
-            context = super().get_context_data(**kwargs)
-            context['tasks'] = self.get_queryset()
-            return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tasks'] = self.get_queryset()
+        return context
