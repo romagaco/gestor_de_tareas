@@ -57,11 +57,11 @@ class RegisterView(CreateView):
         return super(RegisterView, self).form_valid(form)
 
 
-    @login_required
-    def logout_view(request):
-        logout(request)
-        messages.add_message(request, messages.INFO, "Se ha cerrado sesión correctamente.")
-        return HttpResponseRedirect(reverse('home'))
+@login_required
+def logout_view(request):
+    logout(request)
+    messages.add_message(request, messages.INFO, "Se ha cerrado sesión correctamente.")
+    return HttpResponseRedirect(reverse('home'))
 
 
 

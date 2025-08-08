@@ -1,0 +1,23 @@
+<article>
+  <div class="bg-white border mt-2">
+  <div>
+      <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
+          <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="{{ task.user.profile.profile_picture.url }}" width="45">
+              <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">{{ task.user.first_name }}</span><span class="text-black-50 time">{{ task.created_at }}</span></div>
+          </div>
+          <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
+      </div>
+  </div>
+  <footer>
+    <div class="text-center">
+      {% if request.user.is_authenticated %}
+        <p>
+          {{ task.comments.all.count }} <i class="bi bi-chat-dots"></i>
+        </p>
+      {% endif %}
+    </div>
+    <p class="text-center mt-3 mb-3">
+      <a class="btn btn-primary btn-sm" role="button" href="{% url 'task_detail' task.pk %}">Ver Tarea</a>
+    </p>
+  </footer>
+</article>

@@ -3,12 +3,11 @@ from django.contrib import admin
 from django.urls import path
 
 
-from .views import HomeView, LoginView, RegisterView, ContactView, LegalView 
-from .views import logout_view, ProfileDetailView, ProfileUpdateView, CalendarView
+from .views import HomeView, LoginView, RegisterView, logout_view, ProfileDetailView, ProfileUpdateView, CalendarView
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views
-from .views import TaskView, TaskListView, taskCreateView
+from tasks.views import TaskView, TaskListView, taskCreateView
 
 
 urlpatterns = [

@@ -1,0 +1,23 @@
+{% extends "general/layout.html" %}
+
+{% block head_title %}Bienvenido a TareasNaitor5000{% endblock %}
+
+{% block page_content %}
+
+    <h1> Delete Task </h1>
+
+    <p> Are you sure that you want to delete this task? - {{task}} </p>
+
+    <form method="POST" action="">
+
+        {% csrf_token %}
+
+        <input type="submit" name="Confirm deletion" href="{% url 'task_list' %}">
+
+    </form>
+
+
+    <a href="{% url 'task_list' %}"> Cancel </a>
+
+
+{% endblock %}
