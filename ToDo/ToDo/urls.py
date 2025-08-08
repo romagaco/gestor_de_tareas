@@ -7,7 +7,7 @@ from .views import HomeView, LoginView, RegisterView, logout_view, ProfileDetail
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views
-from tasks.views import TaskView, TaskListView, taskCreateView
+from tasks.views import TaskDetailView, taskCreateView
 
 
 urlpatterns = [
@@ -19,8 +19,7 @@ urlpatterns = [
     path('my_profile/', ProfileDetailView.as_view(), name='my_profile'),
     path('profile/update/', ProfileUpdateView.as_view(), name='profile_update'),
     path('calendar/', CalendarView.as_view(), name='register'),
-    path('task/<int:pk>', TaskView.as_view(), name="task_list"),
-    path('task/task_list/<int:pk>', TaskListView.as_view(), name="task_list"),
+    path('task/<int:pk>', TaskDetailView.as_view(), name="task_detail"),
     path('tasks/create/', taskCreateView.as_view(), name="task_create"),
     path('tasks/update-task/<int:pk>/', views.updateTask, name="update-task"),
     path('tasks/delete-task/<int:pk>/', views.deleteTask, name="delete-task"),
