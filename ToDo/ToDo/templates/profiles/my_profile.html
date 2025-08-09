@@ -9,28 +9,40 @@
   {% csrf_token %}
   
   <h1>Perfil</h1>
-  <p>Nombre: {{ profile.user.first_name }}</p>
-  <p>Biografía: {{ profile.bio | default:"Sin rellenar" }}</p>
-  <p>Fecha de nacimiento: {{ profile.birth_date | default:"Sin rellenar" }}</p>
-  <p>
-    {% if profile.profile_picture %}
-      <img width="100" src="{{ profile.profile_picture.url }}" alt="">
-    {% else %}
-      No dispone de foto de perfil
-    {% endif %}
-  </p>
-  {% if profile == request.user %}
+    <p>Foto de perfil:</p>
+      <p>
+          {% if request.user.profile.profile_picture %}
+              <img width="100" src="{{ request.user.profile.profile_picture.url }}" alt="">
+          {% else %}
+              No dispone de foto de perfil
+          {% endif %}
+      </p>
+      <p>Nombre: {{ request.user.profile.first_name }} {{ request.user.profile.last_name }}</p>
+      <p>Biografía: {{ request.user.profile.bio }}</p>
+    
     <p><a href="{% url 'profile_update' %}">Editar perfil</a></p>
-  {% endif %}
-    <section>
-    <h2>Tareas</h2>
-    <div class="row">
-      {% for task in profile.user.tasks.all %}
-      <div class="col-12 col-sm-4">
-        {% include '_includes/tasks/_task.html' %}
-      </div>
-      {% endfor %}
-    </div>
-  </section>
+
+    <section class="tasks_section">
+      <h2>Tareas</h2>
+        <div class="row">
+            {% for task in profile.user.tasks.all %}
+                <div class="col-12 col-sm-4">
+                    {% include '_includes/tasks/_task.html' %}
+                </div>
+            {% empty %}
+                <p>No hay tareas asociadas a este usuario.</p>
+            {% endfor %}
+        </div>
+        <div class="row">
+          <p><a href="{% url 'task_create' %}">Crear nueva tarea</a></p>
+        </div>
+    </section>
+
+    <section class="calendar_section">
+      <h2>Clendario</h2>
+        <div class="row">
+          <p><a href="{% url 'calendar' %}">Calendario</a></p>
+        </div>
+    </section>
 </div>
 {% endblock %}

@@ -10,6 +10,7 @@ from django.urls import reverse_lazy, reverse
 from django.contrib.auth.decorators import login_required
 from .forms import CommentCreateForm
 from .forms import TaskCreateForm
+from django.views.generic import ListView
 
 from django.http import JsonResponse
 
@@ -81,16 +82,12 @@ class TaskUpdateView(CreateView):
         return super(TaskUpdateView, self).form_valid(form)
     
 
-@method_decorator(login_required, name='dispatch')
-class TaskListView(CreateView):
+class TaskListView(ListView):
     template_name = "tasks/task_list.html"
     model = Task
     context_object_name = 'tasks'
 
     def get_queryset(self):
-        return Task.objects.filter(user=self.request.user).order_by('-created_at')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['tasks'] = self.get_queryset()
-        return context
+        queryset = Task.objects.filter(user=self.request.user).order_by('-created_at')
+        print(queryset)  # Verifica que las tareas se estén obteniendo correctamente
+        return queryset

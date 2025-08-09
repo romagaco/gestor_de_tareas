@@ -1,0 +1,25 @@
+{% extends "general/layout.html" %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}task list{% endblock %}
+
+{% block page_content %}
+
+
+<h1>Mis Tareas</h1>
+
+{% for task in tasks %}
+    <div class="task">
+        <h2>{{ task.title }}</h2>
+        <p>{{ task.caption }}</p>
+        <p>Creada el {{ task.created_at }}</p>
+        <p>
+            <a href="{% url 'task_update' task.pk %}">Editar</a>
+            <a href="{% url 'task_delete' task.pk %}">Eliminar</a>
+        </p>
+    </div>
+{% empty %}
+    <p>No hay tareas</p>
+{% endfor %}
+
+{% endblock %}

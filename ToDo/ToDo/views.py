@@ -20,6 +20,7 @@ from .forms import RegistrationForm
 from profiles.models import UserProfile
 from django.contrib.auth.forms import AuthenticationForm
 
+
 class HomeView(TemplateView):
     template_name = "general/Homepage.html"
 
@@ -102,20 +103,15 @@ class ProfileListView(ListView):
 class ProfileUpdateView(UpdateView):
     model = UserProfile
     template_name = "profiles/profile_update.html"
-    context_object_name = "profile"
-    fields = ['profile_picture', 'bio', 'birth_date']
+    fields = ['profile_picture', 'bio', 'birth_date', 'first_name', 'last_name']
 
-
-    def dispatch(self, request, *args, **kwargs):
-        user_profile = self.get_object()
-        if user_profile.user != self.request.user:
-            return HttpResponseRedirect(reverse('home'))
-        return super().dispatch(request, *args, **kwargs)
+    def get_object(self):
+        return self.request.user.profile
 
     def form_valid(self, form):
+        print(form.cleaned_data) 
         messages.add_message(self.request, messages.SUCCESS, "Perfil editado correctamente.")
-        return super(ProfileUpdateView, self).form_valid(form)
+        return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('profile_detail', args=[self.object.pk])
-    
+        return reverse('my_profile')

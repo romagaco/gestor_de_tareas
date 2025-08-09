@@ -12,8 +12,9 @@
       {% csrf_token %}
       <div class="row">
         <div class="col-12 col-sm-6">
-          {{ form.image|as_crispy_field }}
+          {{ form.title|as_crispy_field }}
           {{ form.caption|as_crispy_field }}
+
         </div>
       </div>
       <button class="btn btn-secondary">Crear</button>
