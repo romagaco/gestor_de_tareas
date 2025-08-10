@@ -10,7 +10,6 @@
   <p>¡Bienvenido a TareasNaitor5000!</p>
   <section>
     <h2>ultimas  Noticias</h2>
-
     <div class="row">
       <div class="col-md-4">
         <h3>Noticia 1</h3>
@@ -26,5 +25,16 @@
       </div>
     </div>
   </section>
+
+  <section>
+  <h2>Últimos usuarios registrados</h2>
+  <ul>
+      {% for user in latest_users %}
+          <li>{{ user.username }} ({{ user.date_joined }})</li>
+      {% empty %}
+          <li>No hay usuarios registrados</li>
+      {% endfor %}
+  </ul>
+</section>
 </div>
 {% endblock %}

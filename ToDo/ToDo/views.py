@@ -24,6 +24,11 @@ from django.contrib.auth.forms import AuthenticationForm
 class HomeView(TemplateView):
     template_name = "general/Homepage.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['latest_users'] = User.objects.order_by('-date_joined')[:3]
+        return context
+
 
 class CalendarView(TemplateView):
     template_name = "profiles/calendar.html"

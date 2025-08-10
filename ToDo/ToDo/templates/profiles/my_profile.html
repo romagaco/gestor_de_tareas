@@ -25,13 +25,7 @@
     <section class="tasks_section">
       <h2>Tareas</h2>
         <div class="row">
-            {% for task in profile.user.tasks.all %}
-                <div class="col-12 col-sm-4">
-                    {% include '_includes/tasks/_task.html' %}
-                </div>
-            {% empty %}
-                <p>No hay tareas asociadas a este usuario.</p>
-            {% endfor %}
+            <p><a href="{% url 'task_list' %}">Lista de tareas</a></p>
         </div>
         <div class="row">
           <p><a href="{% url 'task_create' %}">Crear nueva tarea</a></p>
