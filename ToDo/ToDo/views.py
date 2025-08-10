@@ -19,6 +19,7 @@ from django.utils.decorators import method_decorator
 from .forms import RegistrationForm
 from profiles.models import UserProfile
 from django.contrib.auth.forms import AuthenticationForm
+from tasks.models import Task
 
 
 class HomeView(TemplateView):
@@ -91,6 +92,11 @@ class ProfileDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['latest_tasks'] = Task.objects.filter(user=self.request.user).order_by('-created_at')[:3]
+        return context
 
 
 class ProfileListView(ListView):

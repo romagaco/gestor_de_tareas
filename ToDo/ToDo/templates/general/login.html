@@ -7,9 +7,8 @@
 <div class="login_container">
   {% include '_includes/_messages.html' %}
 
-
-  <h1>Inicio de sesión</h1>
-
+  <section class="login_window">
+    <h1>Inicio de sesión</h1>
     <form action="" method="post">
       {% csrf_token %}
       <div class="row">
@@ -20,6 +19,6 @@
       </div>
       <button class="btn btn-secondary">Iniciar sesión</button>
     </form>
-
+  </section>
 </div>
 {% endblock %}

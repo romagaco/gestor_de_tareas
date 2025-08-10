@@ -1,8 +1,10 @@
 <header>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tasks/styles.css' %}">
   <div class="header_container">
-    <h1>TareasNaitor5000</h1>
+    <p>TareasNaitor5000</p>
     <nav class="main-nav">
-        <ul>
+        <ul class="nav-list">
           <li><a href="{% url 'home' %}">Homepage</a></li>
           {% if not request.user.is_authenticated %}
             <li><a href="{% url 'login' %}">Login</a></li>

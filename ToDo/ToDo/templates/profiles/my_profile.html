@@ -4,39 +4,52 @@
 {% block head_title %}Bienvenido a TareasNaitor5000{% endblock %}
 
 {% block page_content %}
-<div class="profile_container">
-  {% include '_includes/_messages.html' %}
-  {% csrf_token %}
-  
-  <h1>Perfil</h1>
-    <p>Foto de perfil:</p>
-      <p>
-          {% if request.user.profile.profile_picture %}
-              <img width="100" src="{{ request.user.profile.profile_picture.url }}" alt="">
-          {% else %}
-              No dispone de foto de perfil
-          {% endif %}
+  <div class="profile_container">
+    {% include '_includes/_messages.html' %}
+    {% csrf_token %}
+    <section class="profile_section profile_column">
+      <p class="profile-pic-container">
+        {% if request.user.profile.profile_picture %}
+          <img width="100" src="{{ request.user.profile.profile_picture.url }}" alt="" class="profile-pic">
+        {% else %}
+          No dispone de foto de perfil
+        {% endif %}
       </p>
+      <h1 class="profile_title">{{ user.username }}</h1>
       <p>Nombre: {{ request.user.profile.first_name }} {{ request.user.profile.last_name }}</p>
       <p>Biografía: {{ request.user.profile.bio }}</p>
-    
-    <p><a href="{% url 'profile_update' %}">Editar perfil</a></p>
+      <div class="edit_btn">
+        <p><a href="{% url 'profile_update' %}" class="profile_btn">Editar perfil</a></p>
+      </div>
+    </section>
 
-    <section class="tasks_section">
-      <h2>Tareas</h2>
-        <div class="row">
-            <p><a href="{% url 'task_list' %}">Lista de tareas</a></p>
+    <section class="tasks_section profile_column">
+      <h2 class="profile_subtitle">Tareas</h2>
+      <h3 class="profile_sub_subtitle">Últimas tareas creadas</h3>
+        <div class="latest_container">
+          <ul>
+            {% for task in latest_tasks %}
+              <li>{{ task.title }} ({{ task.created_at }})</li>
+            {% empty %}
+              <li>No hay tareas creadas</li>
+            {% endfor %}
+          </ul>
         </div>
-        <div class="row">
-          <p><a href="{% url 'task_create' %}">Crear nueva tarea</a></p>
+        <div class="profile_btn_container">
+          <div class="row">
+            <p><a href="{% url 'task_list' %}" class="profile_btn">Lista de tareas</a></p>
+          </div>
+          <div class="row">
+            <p><a href="{% url 'task_create' %}" class="profile_btn">Crear nueva tarea</a></p>
+          </div>
         </div>
     </section>
 
-    <section class="calendar_section">
-      <h2>Clendario</h2>
+    <section class="calendar_section profile_column">
+      <h2 class="profile_subtitle">Clendario</h2>
         <div class="row">
-          <p><a href="{% url 'calendar' %}">Calendario</a></p>
+          <p><a href="{% url 'calendar' %}" class="profile_btn">Calendario</a></p>
         </div>
     </section>
-</div>
+  </div>
 {% endblock %}

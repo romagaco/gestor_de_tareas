@@ -3,38 +3,40 @@
 {% block head_title %}Bienvenido a TareasNaitor5000 {% endblock %}
 
 {% block page_content %}
-<div class="container">
+<div class="home_container">
   {% include '_includes/_messages.html' %}
-
-  <h1>Homepage TareasNaitor5000 </h1>
-  <p>¡Bienvenido a TareasNaitor5000!</p>
-  <section>
-    <h2>ultimas  Noticias</h2>
-    <div class="row">
-      <div class="col-md-4">
-        <h3>Noticia 1</h3>
-        <p>Descripción breve de la noticia 1.</p>
+    <h1 class="home_title">¡Bienvenido a TareasNaitor5000!</h1>
+    <h2 class="home_subtitle">Ultimas  Noticias</h2>
+  <section class="noticias_section">
+    <div class="row noticias">
+      <div class="col-md-4 noticia">
+        <h3>Noticia !!</h3>
+        <p>Estamos trabajando para agregar nuevas funciones como lo pudiera
+          ser la integración con Google Calendar y la posibilidad de asignar tareas a otros usuarios.</p>
+        </p>
       </div>
-      <div class="col-md-4">
-        <h3>Noticia 2</h3>
-        <p>Descripción breve de la noticia 2.</p>
+      <div class="col-md-4 noticia">
+        <h3>Noticia !!</h3>
+        <p>Beneficios con tu usuario, si estas registrado puedes hacer uso de 
+          promociones en restaurantes y locales.
+        </p>
       </div>
-      <div class="col-md-4">
-        <h3>Noticia 3</h3>
-        <p>Descripción breve de la noticia 3.</p>
+      <div class="col-md-4 noticia">
+        <h3>Noticia !!</h3>
+        <p>Ya no se que poner.</p>
       </div>
     </div>
   </section>
 
-  <section>
-  <h2>Últimos usuarios registrados</h2>
-  <ul>
-      {% for user in latest_users %}
-          <li>{{ user.username }} ({{ user.date_joined }})</li>
-      {% empty %}
-          <li>No hay usuarios registrados</li>
-      {% endfor %}
-  </ul>
-</section>
+  <section class="ultimos_usuarios">
+    <h2 class="ultimos_usuarios_subtitle">Últimos usuarios registrados</h2>
+    <ul>
+        {% for user in latest_users %}
+            <li>{{ user.username }} ({{ user.date_joined }})</li>
+        {% empty %}
+            <li>No hay usuarios registrados</li>
+        {% endfor %}
+    </ul>
+  </section>
 </div>
 {% endblock %}
