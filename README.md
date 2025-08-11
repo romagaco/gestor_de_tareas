@@ -78,6 +78,6 @@ Abre un Pull Request.
 📜 Licencia
 Este proyecto está bajo la Licencia MIT. Siéntete libre de usarlo y modificarlo según tus necesidades.
 📬 Contacto
-Si tienes alguna pregunta o sugerencia, no dudes en abrir un issue o contactarme a través de tu-email@example.com.
+Si tienes alguna pregunta o sugerencia, no dudes en abrir un issue o contactarme a través de roberdex26@gmail.com o romagacotech@gmail.com
 
 ⭐ ¡No olvides darle una estrella al repositorio si te gusta el proyecto! ⭐
